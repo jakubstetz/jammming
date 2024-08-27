@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import SearchBar from "../SearchBar/SearchBar"
 import SearchResults from '../SearchResults/SearchResults';
+import {testSongs} from '../../mocks/spotifyMock';
 
 function App() {
   const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState(testSongs);
 
   const changeHandler = ({target: {value}}) => setSearch(value); // Track user input in SearchBar component.
 
@@ -15,7 +17,7 @@ function App() {
       <main>
         <SearchBar value={search} onChange={changeHandler} />
         <div id="search-results-and-playlist">
-          <SearchResults search={search} />
+          <SearchResults search={search} tracks={searchResults} />
         </div>
       </main>
     </>
