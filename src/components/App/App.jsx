@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import SearchBar from "../SearchBar/SearchBar"
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const [search, setSearch] = useState("");
@@ -13,6 +14,9 @@ function App() {
       </header>
       <main>
         <SearchBar value={search} onChange={changeHandler} />
+        <div id="search-results-and-playlist">
+          <SearchResults search={search} />
+        </div>
       </main>
     </>
   )
