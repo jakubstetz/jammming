@@ -1,5 +1,3 @@
-import './Track.css'
-
 function Track() {
   return (
     <>

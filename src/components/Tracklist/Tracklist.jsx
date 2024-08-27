@@ -1,5 +1,3 @@
-import './Tracklist.css'
-
 function Tracklist() {
   return (
     <>
