@@ -2,3 +2,20 @@ html {
   background-color: #282c34;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+/*** Header ***/
+
+header {
+  padding: 0.5rem;
+  border-bottom: 1px solid hsl(180, 85%, 45%);
+  background-color: #141414;
+}
+
+h1 {
+  font-size: 3.5rem;
+  color: rgb(210, 209, 209);
+}
+
+h1 span {
+  color: hsl(180, 85%, 45%);
+}
