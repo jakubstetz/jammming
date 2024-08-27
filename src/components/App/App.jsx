@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import SearchBar from "../SearchBar/SearchBar"
 import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <SearchBar value={search} onChange={changeHandler} />
         <div id="search-results-and-playlist">
           <SearchResults search={search} tracks={searchResults} />
+          <Playlist tracks={searchResults} />
         </div>
       </main>
     </>

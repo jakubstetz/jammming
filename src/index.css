@@ -80,6 +80,40 @@ h1 span {
   color: white;
 }
 
+/* Playlist Component */
+
+.tracks-container-header input {
+  background-color: rgba(40, 40, 40, 0.30);
+  border-bottom: 1px solid grey;
+  margin: 0.5rem 10%;
+  width: 80%;
+  color: white;
+  font-size: 2rem;
+}
+
+#save-to-spotify {
+  display: flex;
+  justify-content: center;
+}
+
+#save-to-spotify button {
+  /* "Save to Spotify" button. */
+  margin: 1rem 0;
+  /* margin: 0 auto; For some reason this isn't working. That's why the button is in a centering container. */
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: hsl(180, 85%, 45%);
+}
+
+#save-to-spotify button:hover {
+  background-color: hsl(180, 85%, 40%);
+}
+
+#save-to-spotify button:active {
+  background-color: hsl(180, 85%, 20%);
+  color: white;
+}
+
 /* Track Component */
 
 .track {
