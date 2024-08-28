@@ -20,8 +20,13 @@ function App() {
     setPlaylist([]);
   }
 
-  const addHandler = track => { // Adding a track to the user's playlist.
+  const addHandler = track => {
     if (!playlist.includes(track)) setPlaylist(prevPlaylist => [...prevPlaylist, track]);
+  }
+
+  const removeHandler = track => { // Removing a track from the user's playlist.
+    const indexInPlaylist = playlist.indexOf(track);
+    setPlaylist(prevPlaylist => prevPlaylist.filter((unusedParameter, i) => i !== indexInPlaylist));
   }
 
   ///// Returned Component /////
@@ -34,7 +39,7 @@ function App() {
         <SearchBar value={search} onChange={changeHandler} />
         <div id="search-results-and-playlist">
           <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
-          <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} />
+          <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
         </div>
       </main>
     </>
