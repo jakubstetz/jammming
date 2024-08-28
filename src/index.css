@@ -163,3 +163,28 @@ h4 {
 .track button:hover {
   background-color: rgb(69, 69, 69);
 }
+
+/*** Testing ***/
+.test-button {
+  position: absolute;
+  margin: 26px;
+  height: 120px;
+  width: 120px;
+  border: grey 2px solid;
+  background-color: rgb(46, 46, 46);
+  color: white;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+  box-shadow: rgb(10, 0, 144) 0 0 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  /* display: none; */
+}
+
+.test-button:active {
+  background-color: grey;
+  transition: background-color 0s;
+}

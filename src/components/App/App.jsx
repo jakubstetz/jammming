@@ -29,6 +29,10 @@ function App() {
     setPlaylist(prevPlaylist => prevPlaylist.filter((unusedParameter, i) => i !== indexInPlaylist));
   }
 
+  const clickHandler = e => { // FOR TESTING PURPOSES.
+    console.log('test');
+  }
+
   ///// Returned Component /////
   return (
     <>
@@ -42,6 +46,9 @@ function App() {
           <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
         </div>
       </main>
+      {/*** TESTING ***/}
+      <button className="test-button" onClick={clickHandler} >TEST</button> {/* FOR TESTING PURPOSES */}
+      {/*** TESTING ***/}
     </>
   )
 }
