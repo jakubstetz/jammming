@@ -9,11 +9,16 @@ function App() {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(testSongs);
   const [playlistName, setPlaylistName] = useState("");
+  const [playlist, setPlaylist] = useState([]);
 
   ///// Handlers /////
   const changeHandler = ({target: {value}}) => setSearch(value); // Track user input in SearchBar component.
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
+
+  const saveHandler = () => { // Handle saving playlist to user's account.
+    setPlaylist([]);
+  }
 
   ///// Returned Component /////
   return (
@@ -24,8 +29,8 @@ function App() {
       <main>
         <SearchBar value={search} onChange={changeHandler} />
         <div id="search-results-and-playlist">
-          <SearchResults search={search} tracks={searchResults} />
-          <Playlist tracks={searchResults} value={playlistName} playlistHandler={playlistNameHandler} />
+          <SearchResults tracks={searchResults} search={search} />
+          <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} />
         </div>
       </main>
     </>
