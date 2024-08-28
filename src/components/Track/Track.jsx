@@ -1,6 +1,6 @@
 import { artistsToString } from "../../utilityFunctions";
 
-function Track({track, clickHandler}) {
+function Track({track, clickHandler, inPlaylist}) {
   return (
     <div className="track">
       <img />
@@ -10,7 +10,7 @@ function Track({track, clickHandler}) {
         <h4>{`${track.album.name}, ${track.album.release_date}`}</h4>
       </div>
       <button onClick={() => clickHandler(track)} >
-        +
+        {inPlaylist ? "-" : "+"}
       </button>
     </div>
   );

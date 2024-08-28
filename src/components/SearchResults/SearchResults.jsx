@@ -6,7 +6,7 @@ function SearchResults({tracks, search, addHandler}) {
       <div className="tracks-container-header">
         <p>Current search: <span>{search}</span></p>
       </div>
-      <Tracklist tracks={tracks} clickHandler={addHandler} />
+      <Tracklist tracks={tracks} clickHandler={addHandler} inPlaylist={false} />
     </div>
   );
 }
