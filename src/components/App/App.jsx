@@ -20,6 +20,10 @@ function App() {
     setPlaylist([]);
   }
 
+  const addHandler = track => { // Adding a track to the user's playlist.
+    if (!playlist.includes(track)) setPlaylist(prevPlaylist => [...prevPlaylist, track]);
+  }
+
   ///// Returned Component /////
   return (
     <>
@@ -29,7 +33,7 @@ function App() {
       <main>
         <SearchBar value={search} onChange={changeHandler} />
         <div id="search-results-and-playlist">
-          <SearchResults tracks={searchResults} search={search} />
+          <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
           <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} />
         </div>
       </main>

@@ -1,6 +1,6 @@
 import { artistsToString } from "../../utilityFunctions";
 
-function Track({track}) {
+function Track({track, clickHandler}) {
   return (
     <div className="track">
       <img />
@@ -9,7 +9,7 @@ function Track({track}) {
         <h4>{artistsToString(track.album.artists)}</h4>
         <h4>{`${track.album.name}, ${track.album.release_date}`}</h4>
       </div>
-      <button >
+      <button onClick={() => clickHandler(track)} >
         +
       </button>
     </div>
