@@ -6,13 +6,18 @@ import {testSongs} from '../../mocks/spotifyMock';
 
 function App() {
   ///// States /////
+  const [searchTerm, setSearchTerm] = useState("");
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(testSongs);
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
 
   ///// Handlers /////
-  const changeHandler = ({target: {value}}) => setSearch(value); // Track user input in SearchBar component.
+  const changeHandler = ({target: {value}}) => setSearchTerm(value); // Track user input in SearchBar component.
+
+  const searchHandler = () => { // Use user input in SearchBar component to produce Spotify search results.
+    setSearch(searchTerm);
+  }
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
 
@@ -40,7 +45,7 @@ function App() {
         <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
       </header>
       <main>
-        <SearchBar value={search} onChange={changeHandler} />
+        <SearchBar value={searchTerm} changeHandler={changeHandler} searchHandler={searchHandler} />
         <div id="search-results-and-playlist">
           <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
           <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />

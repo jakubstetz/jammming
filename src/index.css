@@ -47,6 +47,23 @@ h1 span {
   /* Temporary solution. Trying to figure out how to make the width automatically adjust to the container width. */
 }
 
+#search-bar button { /* Search button. */
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: hsl(180, 85%, 45%);
+  border: 4px solid hsl(180, 85%, 20%);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+#search-bar button:active {
+  background-color: hsl(180, 85%, 20%);
+  transition: background-color 0s;
+}
+
 /*** SearchResults and Playlist Components ***/
 
 #search-results-and-playlist {
