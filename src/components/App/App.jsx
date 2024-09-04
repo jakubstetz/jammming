@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar/SearchBar"
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
-import { getAccessToken } from '../../utilityFunctions';
+import { spotifyFunctions } from '../../utilityFunctions';
 
 function App() {
   ///// States /////
@@ -13,7 +13,6 @@ function App() {
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [accessToken, setAccessToken] = useState('');
-  const [expiresIn, setExpiresIn] = useState(null);
 
   ///// Effects /////
   useEffect(() => {
@@ -23,9 +22,8 @@ function App() {
     if (urlAccessToken && urlExpiresIn) {
       setAccessToken(urlAccessToken[1]);
       const expiresIn = Number(urlExpiresIn[1])
-      setTimeout(() => getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
-      setExpiresIn(Number(urlExpiresIn[1]));
-    } else getAccessToken();
+      setTimeout(() => spotifyFunctions.getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
+    } else spotifyFunctions.getAccessToken();
   }, [])
 
   ///// Handlers /////
