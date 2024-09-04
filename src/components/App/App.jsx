@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import SearchBar from "../SearchBar/SearchBar"
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
+import { getAccessToken } from '../../utilityFunctions';
 
 function App() {
   ///// States /////
@@ -11,6 +12,21 @@ function App() {
   const [searchResults, setSearchResults] = useState(testSongs);
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
+  const [accessToken, setAccessToken] = useState('');
+  const [expiresIn, setExpiresIn] = useState(null);
+
+  ///// Effects /////
+  useEffect(() => {
+    // Developed by referencing Spotify for Developers' "Implicit Grant Flow" article along with Codecademy solution code.
+    const urlAccessToken = window.location.href.match(/access_token=([^&]*)/);
+    const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
+    if (urlAccessToken && urlExpiresIn) {
+      setAccessToken(urlAccessToken[1]);
+      const expiresIn = Number(urlExpiresIn[1])
+      setTimeout(() => getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
+      setExpiresIn(Number(urlExpiresIn[1]));
+    } else getAccessToken();
+  }, [])
 
   ///// Handlers /////
   const changeHandler = ({target: {value}}) => setSearchTerm(value); // Track user input in SearchBar component.
@@ -35,7 +51,8 @@ function App() {
   }
 
   const clickHandler = e => { // FOR TESTING PURPOSES.
-    console.log('test');
+    console.log('Current access token:');
+    console.log(accessToken);
   }
 
   ///// Returned Component /////
