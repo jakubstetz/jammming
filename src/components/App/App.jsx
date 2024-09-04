@@ -13,6 +13,7 @@ function App() {
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [accessToken, setAccessToken] = useState('');
+  const [test, setTest] = useState('');
 
   ///// Effects /////
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
 
   const searchHandler = () => { // Use user input in SearchBar component to produce Spotify search results.
     setSearch(searchTerm);
+    spotifyFunctions.searchSpotify(accessToken, search, setTest);
   }
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
@@ -49,8 +51,8 @@ function App() {
   }
 
   const clickHandler = e => { // FOR TESTING PURPOSES.
-    console.log('Current access token:');
-    console.log(accessToken);
+    console.log('Response:');
+    console.log(test);
   }
 
   ///// Returned Component /////

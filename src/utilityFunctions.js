@@ -40,5 +40,19 @@ export const spotifyFunctions = {
     window.location = url;
   },
 
+  async searchSpotify(accessToken, search, stateSetter) {
+    // Developed by referencing Spotify Web API documentation.
 
+    let url = 'https://api.spotify.com/v1/search?q=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=album';
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+
+    const responseDecoded = await response.json();
+    stateSetter(responseDecoded);
+  }
 }
