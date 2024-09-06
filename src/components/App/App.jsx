@@ -8,12 +8,12 @@ import { spotifyFunctions } from '../../utilityFunctions';
 function App() {
   ///// States /////
   const [searchBarInput, setSearchBarInput] = useState("");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Testing");
   const [searchResults, setSearchResults] = useState(testSongs);
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [accessToken, setAccessToken] = useState('');
-  const [test, setTest] = useState('');
+  const [test, setTest] = useState(''); // FOR TESTING PURPOSES.
 
   ///// Effects /////
   useEffect(() => {
@@ -29,11 +29,12 @@ function App() {
   }, [])
 
   ///// Handlers /////
-  const changeHandler = ({target: {value}}) => setSearchTerm(value); // Track user input in SearchBar component.
+  const changeHandler = ({target: {value}}) => setSearchBarInput(value); // Track user input in SearchBar component.
 
   const searchHandler = () => { // Use user input in SearchBar component to produce Spotify search results.
-    setSearch(searchTerm);
-    spotifyFunctions.searchSpotify(accessToken, search, setTest);
+    setSearch(searchBarInput);
+    spotifyFunctions.searchSpotify(accessToken, searchBarInput, setTest);
+    // console.log(test);
   }
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
