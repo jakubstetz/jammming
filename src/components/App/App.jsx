@@ -18,11 +18,12 @@ function App() {
   ///// Effects /////
   useEffect(() => {
     // Developed by referencing Spotify for Developers' "Implicit Grant Flow" article along with Codecademy solution code.
-    const urlAccessToken = window.location.href.match(/access_token=([^&]*)/);
+    const urlAccessToken = window.location.href.match(/access_token=([^&]*)/); // Understanding for how exactly this works (along with urlAccessToken[1]) was developed with the help of ChatGPT.
     const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
     if (urlAccessToken && urlExpiresIn) {
       setAccessToken(urlAccessToken[1]);
-      const expiresIn = Number(urlExpiresIn[1])
+      const expiresIn = Number(urlExpiresIn[1]);
+      // window.history.replaceState({}, null, '/'); Not yet implemented. This code with replace the current url, thus removing access token information.
       setTimeout(() => spotifyFunctions.getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
     } else spotifyFunctions.getAccessToken();
   }, [])
