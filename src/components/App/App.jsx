@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar/SearchBar"
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
-import { spotifyFunctions } from '../../utilityFunctions';
+import { spotifyFunctions, pruneTrackSearchResults } from '../../utilityFunctions';
 
 function App() {
   ///// States /////
@@ -53,8 +53,8 @@ function App() {
   }
 
   const clickHandler = e => { // FOR TESTING PURPOSES.
-    console.log('Response:');
-    console.log(test);
+    let newValue = pruneTrackSearchResults(test);
+    console.log(newValue);
   }
 
   ///// Returned Component /////

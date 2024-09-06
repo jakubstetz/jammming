@@ -7,6 +7,15 @@ export function artistsToString(artistsArray) {
   return artistsAsString;
 }
 
+export function pruneTrackSearchResults({tracks: {items}}) { // Remove unnecessary information retrieved from Spotify API on search.
+  let prunedTracks = [];
+  for (const track of items) {
+    prunedTracks.push(5)
+  }
+
+  return prunedTracks;
+}
+
 const generateRandomString = length => { // Generate a string of random characters of a given length. Used for state of Spotify access token request below.
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
