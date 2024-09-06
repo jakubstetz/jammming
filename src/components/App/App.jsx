@@ -7,7 +7,7 @@ import { spotifyFunctions } from '../../utilityFunctions';
 
 function App() {
   ///// States /////
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchBarInput, setSearchBarInput] = useState("");
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(testSongs);
   const [playlistName, setPlaylistName] = useState("");
@@ -63,7 +63,7 @@ function App() {
         <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
       </header>
       <main>
-        <SearchBar value={searchTerm} changeHandler={changeHandler} searchHandler={searchHandler} />
+        <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
         <div id="search-results-and-playlist">
           <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
           <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
