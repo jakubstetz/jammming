@@ -34,7 +34,7 @@ function App() {
   const searchHandler = async () => { // Use user input in SearchBar component to produce Spotify search results.
     setSearch(searchBarInput);
     const results = await spotifyFunctions.searchSpotify(accessToken, searchBarInput);
-    setTest(pruneTrackSearchResults(results));
+    setSearchResults(pruneTrackSearchResults(results));
   }
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
