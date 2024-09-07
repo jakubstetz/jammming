@@ -56,6 +56,21 @@ export const spotifyFunctions = {
     window.location = url;
   },
 
+  async getUserInfo(accessToken) {
+    const url = 'https://api.spotify.com/v1/me';
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+
+    const json = await response.json();
+    console.log(json);
+    return json;
+  },
+
   async searchSpotify(accessToken, search) {
     // Developed by referencing Spotify Web API documentation.
 
