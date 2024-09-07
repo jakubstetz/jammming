@@ -41,7 +41,7 @@ export const spotifyFunctions = {
     // Developed by referencing Spotify for Developers' "Implicit Grant Flow" article along with Codecademy solution code.
 
     const clientID = 'c0526ac07c0449679b07db5dfd1b9335';
-    const redirect_uri = 'http://localhost:5173';
+    const redirect_uri = window.location.href.match(/^(http)[s]?[:][/]{2}[^/]*/)[0]; // Create appropriate redirect uri using current url.
     const state = generateRandomString(16);
     //localStorage.setItem('stateKey', state);
     const scope = 'playlist-modify-public'; // Scopes determined by referencing Spotify for Developers' "Scopes" article.
