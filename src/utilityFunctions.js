@@ -7,13 +7,19 @@ export function artistsToString(artistsArray) {
   return artistsAsString;
 }
 
-export function pruneTrackSearchResults({tracks: {items}}) { // Remove unnecessary information retrieved from Spotify API on search.
-  let prunedTracks = [];
-  for (const track of items) {
-    prunedTracks.push(5)
-  }
-
-  return prunedTracks;
+export function pruneTrackSearchResults({tracks: {items}}) { // Remove unnecessary information retrieved from Spotify API on search. Developed using Spotify API documentation, matching what the track-rendering and track-organizing functions in this project expect as inputs.
+  return items.map(({album, name}) => {
+    const {images, release_date, artists} = album;
+    return {
+      album: {
+        images,
+        name: album.name,
+        release_date,
+        artists
+      },
+      name
+    };
+  });
 }
 
 const generateRandomString = length => { // Generate a string of random characters of a given length. Used for state of Spotify access token request below.

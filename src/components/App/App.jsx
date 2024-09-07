@@ -8,7 +8,7 @@ import { spotifyFunctions, pruneTrackSearchResults } from '../../utilityFunction
 function App() {
   ///// States /////
   const [searchBarInput, setSearchBarInput] = useState("");
-  const [search, setSearch] = useState("Testing");
+  const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(testSongs);
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
