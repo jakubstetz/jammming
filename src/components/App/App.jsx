@@ -31,9 +31,10 @@ function App() {
   ///// Handlers /////
   const changeHandler = ({target: {value}}) => setSearchBarInput(value); // Track user input in SearchBar component.
 
-  const searchHandler = () => { // Use user input in SearchBar component to produce Spotify search results.
+  const searchHandler = async () => { // Use user input in SearchBar component to produce Spotify search results.
     setSearch(searchBarInput);
-    spotifyFunctions.searchSpotify(accessToken, searchBarInput, setTest);
+    const results = await spotifyFunctions.searchSpotify(accessToken, searchBarInput);
+    setTest(results);
     // console.log(test);
   }
 

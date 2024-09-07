@@ -55,7 +55,7 @@ export const spotifyFunctions = {
     window.location = url;
   },
 
-  async searchSpotify(accessToken, search, stateSetter) {
+  async searchSpotify(accessToken, search) {
     // Developed by referencing Spotify Web API documentation.
 
     const url = `https://api.spotify.com/v1/search?q=${search}&type=track&limit=4`;
@@ -69,6 +69,6 @@ export const spotifyFunctions = {
 
     const json = await response.json();
     console.log(json);
-    stateSetter(json);
+    return json;
   }
 }
