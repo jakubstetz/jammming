@@ -9,7 +9,8 @@ export function artistsToString(artistsArray) {
 
 export function pruneTrackSearchResults({tracks: {items}}) { // Remove unnecessary information retrieved from Spotify API on search. Developed using Spotify API documentation, matching what the track-rendering and track-organizing functions in this project expect as inputs.
   return items.map(({album, name}) => {
-    const {images, release_date, artists} = album;
+    const {images, artists} = album;
+    const release_date = album.release_date.match(/^\d{4}/);
     return {
       album: {
         images,
