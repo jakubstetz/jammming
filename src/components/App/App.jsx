@@ -9,7 +9,7 @@ function App() {
   ///// States /////
   const [searchBarInput, setSearchBarInput] = useState("");
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState(testSongs);
+  const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [accessToken, setAccessToken] = useState('');
