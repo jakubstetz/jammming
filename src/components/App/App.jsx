@@ -4,6 +4,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
 import { spotifyFunctions, pruneTrackSearchResults } from '../../utilityFunctions';
+import Login from '../Login/Login';
 
 function App() {
   ///// States /////
@@ -13,6 +14,7 @@ function App() {
   const [playlistName, setPlaylistName] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [accessToken, setAccessToken] = useState('');
+  const [user, setUser] = useState({});
   const [test, setTest] = useState(''); // FOR TESTING PURPOSES.
 
   ///// Effects /////
@@ -52,8 +54,11 @@ function App() {
     setPlaylist(prevPlaylist => prevPlaylist.filter((unusedParameter, i) => i !== indexInPlaylist));
   }
 
-  const clickHandler = e => { // FOR TESTING PURPOSES.
-    console.log(test);
+  const clickHandler = async (e) => { // FOR TESTING PURPOSES.
+    if (!test) {
+      const userInfo = await spotifyFunctions.getUserInfo(accessToken);
+      setTest(userInfo);
+    } else console.log(test);
   }
 
   ///// Returned Component /////
@@ -63,7 +68,10 @@ function App() {
         <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
       </header>
       <main>
-        <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
+        <div id="searchbar-and-login">
+          <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
+          <Login accessToken={false} user={false} />
+        </div>
         <div id="search-results-and-playlist">
           <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
           <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
