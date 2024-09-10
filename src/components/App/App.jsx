@@ -18,17 +18,23 @@ function App() {
   const [test, setTest] = useState(''); // FOR TESTING PURPOSES.
 
   ///// Effects /////
-  /* useEffect(() => {
-    // Developed by referencing Spotify for Developers' "Implicit Grant Flow" article along with Codecademy solution code.
+  useEffect(() => {
+    // Developed by referencing Spotify for Developers' "Implicit Grant Flow" article and Codecademy solution code.
     const urlAccessToken = window.location.href.match(/access_token=([^&]*)/); // Understanding for how exactly this works (along with urlAccessToken[1]) was developed with the help of ChatGPT.
     const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
     if (urlAccessToken && urlExpiresIn) {
       setAccessToken(urlAccessToken[1]);
       const expiresIn = Number(urlExpiresIn[1]);
-      // window.history.replaceState({}, null, '/'); Not yet implemented. This code with replace the current url, thus removing access token information.
+      window.history.replaceState({}, null, '/');
       setTimeout(() => spotifyFunctions.getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
-    } else spotifyFunctions.getAccessToken();
-  }, []) */
+
+      const retrieveUser = async () => {
+        const newUser = await spotifyFunctions.getUserInfo(accessToken);
+        setUser(newUser);
+      }
+      retrieveUser();
+    }
+  }, [])
 
   ///// Handlers /////
   const changeHandler = ({target: {value}}) => setSearchBarInput(value); // Track user input in SearchBar component.
@@ -39,8 +45,7 @@ function App() {
     setSearchResults(pruneTrackSearchResults(results));
   }
 
-  const loginHandler = async () => { // Logging in the user and retrieving access token and user info.
-  }
+  const loginHandler = () => spotifyFunctions.getAccessToken(); // Authenticating user.
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
 
@@ -58,36 +63,33 @@ function App() {
   }
 
   const clickHandler = async (e) => { // FOR TESTING PURPOSES.
-    if (!test) {
-      const userInfo = await spotifyFunctions.getUserInfo(accessToken);
-      setTest(userInfo);
-    } else console.log(test);
+    console.log(user);
   }
 
   ///// Returned Component /////
-  if (!accessToken) {
-    return <LoginPage loginHandler={loginHandler} />
-  } else {
-    return (
-      <>
-        <header>
-          <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
-        </header>
-        <main>
-          <div id="searchbar">
-            <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
-          </div>
-          <div id="search-results-and-playlist" className="flex-center">
-            <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
-            <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
-          </div>
-        </main>
-        {/*** TESTING ***/}
-        <button className="test-button" onClick={clickHandler} >TEST</button> {/* FOR TESTING PURPOSES */}
-        {/*** TESTING ***/}
-      </>
-    )
-  }
+  if (!accessToken) return <LoginPage loginHandler={loginHandler} /> // If user is not logged in to Spotify.
+  return ( // If user is logged in to Spotify.
+    <>
+      <header>
+        <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
+      </header>
+      <div className="">
+
+      </div>
+      <main>
+        <div id="searchbar">
+          <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
+        </div>
+        <div id="search-results-and-playlist" className="flex-center">
+          <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
+          <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
+        </div>
+      </main>
+      {/*** TESTING ***/}
+      <button className="test-button" onClick={clickHandler} >TEST</button> {/* FOR TESTING PURPOSES */}
+      {/*** TESTING ***/}
+    </>
+  )
 }
 
 export default App

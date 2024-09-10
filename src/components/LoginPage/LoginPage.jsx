@@ -8,7 +8,7 @@ function LoginPage({loginHandler}) {
         <main className="flex-center">
           <p className="centered-text">Please log in to Spotify to use this application.</p>
           <img />
-          <button>Log in</button>
+          <button onClick={loginHandler}>Log in</button>
         </main>
       </div>
     </div>
