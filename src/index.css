@@ -3,6 +3,11 @@ html {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
 /*** Header ***/
 
 header {
@@ -22,14 +27,6 @@ h1 span {
 
 /*** Searchbar and Login ***/
 
-#searchbar-and-login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
-  padding: 50px 0;
-}
-
 /* SearchBar Component */
 
 #search-bar {
@@ -37,6 +34,7 @@ h1 span {
   justify-content: center;
   align-items: center;
   background-color: rgb(203, 203, 203);
+  margin: 40px auto;
   width: 45%;
   border-radius: 1.5rem;
 }
@@ -73,23 +71,58 @@ h1 span {
   transition: background-color 0s;
 }
 
-/* Login Component */
+/* LoginPage Component */
 
-#login {
-  height: 4rem;
-  display: flex;
-  background-color: black;
+#login-page {
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+}
+
+#login-page div {
+  width: 50%;
+  background-color: #141414;
   border: 2px solid grey;
   border-radius: 2rem;
-  width: 150px;
+  color: white;
+}
+
+#login-page header {
+  background-color: transparent;
+}
+
+#login-page p {
+  font-size: 1.25rem;
+}
+
+#login-page main {
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 40vh;
+}
+
+#login-page button {
+  background-color: hsl(120, 100%, 25%);
+  font-size: 1.5rem;
+  padding: .5rem 2rem;
+  border-radius: 1.75rem;
+  color: white;
+}
+
+#login-page button:hover {
+  background-color: hsl(120, 100%, 20%);
+}
+
+#login-page img {
+  width: 50px;
+  height: 50px;
+  background-color: white;
 }
 
 /*** SearchResults and Playlist Components ***/
 
 #search-results-and-playlist {
-  display: flex;
   justify-content: center;
-  gap: 10%;
 }
 
 .tracks-container {
@@ -98,6 +131,7 @@ h1 span {
   border-radius: 10px;
   width: 30%;
   height: 60vh;
+  margin: 0 5%;
 }
 
 .tracks-container-header {

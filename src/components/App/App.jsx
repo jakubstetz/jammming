@@ -4,7 +4,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
 import { spotifyFunctions, pruneTrackSearchResults } from '../../utilityFunctions';
-import Login from '../Login/Login';
+import LoginPage from '../LoginPage/LoginPage';
 
 function App() {
   ///// States /////
@@ -18,7 +18,7 @@ function App() {
   const [test, setTest] = useState(''); // FOR TESTING PURPOSES.
 
   ///// Effects /////
-  useEffect(() => {
+  /* useEffect(() => {
     // Developed by referencing Spotify for Developers' "Implicit Grant Flow" article along with Codecademy solution code.
     const urlAccessToken = window.location.href.match(/access_token=([^&]*)/); // Understanding for how exactly this works (along with urlAccessToken[1]) was developed with the help of ChatGPT.
     const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
@@ -28,7 +28,7 @@ function App() {
       // window.history.replaceState({}, null, '/'); Not yet implemented. This code with replace the current url, thus removing access token information.
       setTimeout(() => spotifyFunctions.getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
     } else spotifyFunctions.getAccessToken();
-  }, [])
+  }, []) */
 
   ///// Handlers /////
   const changeHandler = ({target: {value}}) => setSearchBarInput(value); // Track user input in SearchBar component.
@@ -37,6 +37,9 @@ function App() {
     setSearch(searchBarInput);
     const results = await spotifyFunctions.searchSpotify(accessToken, searchBarInput);
     setSearchResults(pruneTrackSearchResults(results));
+  }
+
+  const loginHandler = async () => { // Logging in the user and retrieving access token and user info.
   }
 
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
@@ -62,26 +65,29 @@ function App() {
   }
 
   ///// Returned Component /////
-  return (
-    <>
-      <header className="header">
-        <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
-      </header>
-      <main>
-        <div id="searchbar-and-login">
-          <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
-          <Login accessToken={false} user={false} />
-        </div>
-        <div id="search-results-and-playlist">
-          <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
-          <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
-        </div>
-      </main>
-      {/*** TESTING ***/}
-      <button className="test-button" onClick={clickHandler} >TEST</button> {/* FOR TESTING PURPOSES */}
-      {/*** TESTING ***/}
-    </>
-  )
+  if (!accessToken) {
+    return <LoginPage loginHandler={loginHandler} />
+  } else {
+    return (
+      <>
+        <header>
+          <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
+        </header>
+        <main>
+          <div id="searchbar">
+            <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
+          </div>
+          <div id="search-results-and-playlist" className="flex-center">
+            <SearchResults tracks={searchResults} search={search} addHandler={addHandler} />
+            <Playlist tracks={playlist} value={playlistName} playlistHandler={playlistNameHandler} saveHandler={saveHandler} removeHandler={removeHandler} />
+          </div>
+        </main>
+        {/*** TESTING ***/}
+        <button className="test-button" onClick={clickHandler} >TEST</button> {/* FOR TESTING PURPOSES */}
+        {/*** TESTING ***/}
+      </>
+    )
+  }
 }
 
 export default App
