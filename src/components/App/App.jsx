@@ -76,8 +76,8 @@ function App() {
       <header>
         <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
       </header>
-      <LoginIndicator userInfo={user} />
       <main>
+        <LoginIndicator userInfo={user} />
         <div id="searchbar">
           <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
         </div>

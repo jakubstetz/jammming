@@ -8,6 +8,12 @@ html {
   align-items: center;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+}
+
 /*** Header ***/
 
 header {
@@ -71,7 +77,40 @@ h1 span {
   transition: background-color 0s;
 }
 
-/* LoginPage Component */
+/* LoginIndicator Component */
+
+#login-indicator {
+  margin: 30px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: black;
+  border: 2px grey solid;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#login-indicator img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: green 2px solid;
+  box-shadow: 0 0 25px green;
+}
+
+#login-indicator p {
+  color: grey;
+  font-size: 0.75rem;
+}
+
+#login-indicator h2 {
+  color: white;
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+}
+
+/*** LoginPage Component ***/
 
 #login-page {
   height: 100vh;
