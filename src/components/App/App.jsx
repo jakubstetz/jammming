@@ -5,6 +5,7 @@ import Playlist from '../Playlist/Playlist';
 import {testSongs} from '../../mocks/spotifyMock';
 import { spotifyFunctions, pruneTrackSearchResults } from '../../utilityFunctions';
 import LoginPage from '../LoginPage/LoginPage';
+import LoginIndicator from '../LoginIndicator/LoginIndicator';
 
 function App() {
   ///// States /////
@@ -24,17 +25,18 @@ function App() {
     const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
     if (urlAccessToken && urlExpiresIn) {
       setAccessToken(urlAccessToken[1]);
-      const expiresIn = Number(urlExpiresIn[1]);
       window.history.replaceState({}, null, '/');
+      const expiresIn = Number(urlExpiresIn[1]);
       setTimeout(() => spotifyFunctions.getAccessToken(), expiresIn*1000); // Get new access token upon expiry.
-
-      const retrieveUser = async () => {
-        const newUser = await spotifyFunctions.getUserInfo(accessToken);
-        setUser(newUser);
-      }
-      retrieveUser();
     }
   }, [])
+
+  useEffect(() => {
+    if (accessToken) {
+      const retrieveUser = async () => setUser(await spotifyFunctions.getUserInfo(accessToken)); // Asynchronous retrieval of user information from Spotify.
+      retrieveUser();
+    }
+  }, [accessToken])
 
   ///// Handlers /////
   const changeHandler = ({target: {value}}) => setSearchBarInput(value); // Track user input in SearchBar component.
@@ -63,6 +65,7 @@ function App() {
   }
 
   const clickHandler = async (e) => { // FOR TESTING PURPOSES.
+    console.log('TEST');
     console.log(user);
   }
 
@@ -73,9 +76,7 @@ function App() {
       <header>
         <h1 className="centered-text">Ja<span>mmm</span>ing</h1>
       </header>
-      <div className="">
-
-      </div>
+      <LoginIndicator userInfo={user} />
       <main>
         <div id="searchbar">
           <SearchBar value={searchBarInput} changeHandler={changeHandler} searchHandler={searchHandler} />
