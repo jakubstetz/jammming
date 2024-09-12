@@ -52,7 +52,9 @@ function App() {
   const playlistNameHandler = ({target: {value}}) => setPlaylistName(value); // Tracking the name of the user's under-construction playlist.
 
   const saveHandler = () => { // Handle saving playlist to user's account.
+    spotifyFunctions.addPlaylist(accessToken, user, playlist, playlistName);
     setPlaylist([]);
+    setPlaylistName('');
   }
 
   const addHandler = track => {
