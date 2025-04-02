@@ -72,10 +72,10 @@ export const spotifyFunctions = {
     return json;
   },
 
-  async searchSpotify(accessToken, search) {
+  async searchSpotify(accessToken, search, resultsLimit = 5) {
     // Developed by referencing Spotify Web API documentation and Fetch API MDN documentation.
 
-    const url = `https://api.spotify.com/v1/search?q=${search}&type=track&limit=4`;
+    const url = `https://api.spotify.com/v1/search?q=${search}&type=track&limit=${resultsLimit}`;
 
     const response = await fetch(url, {
       headers: {

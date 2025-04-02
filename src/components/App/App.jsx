@@ -16,6 +16,7 @@ function App() {
   const [playlist, setPlaylist] = useState([]);
   const [accessToken, setAccessToken] = useState('');
   const [user, setUser] = useState({});
+  const [resultsLimit, setResultsLimit] = useState(5); // Default limit for search results. TODO: MAKE ADJUSTABLE IN UI
   const [test, setTest] = useState(''); // FOR TESTING PURPOSES.
 
   ///// Effects /////
@@ -44,7 +45,7 @@ function App() {
   const searchHandler = async (e) => { // Use user input in SearchBar component to produce Spotify search results.
     e.preventDefault(); // Prevent browser from reloading on search submission
     setSearch(searchBarInput);
-    const results = await spotifyFunctions.searchSpotify(accessToken, searchBarInput);
+    const results = await spotifyFunctions.searchSpotify(accessToken, searchBarInput, resultsLimit);
     setSearchResults(pruneTrackSearchResults(results));
   }
 
