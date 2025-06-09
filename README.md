@@ -1,87 +1,37 @@
-# Jammming
+# 🎧 Jammming
 
-## Description
+**Jammming** is a React app that connects with the Spotify API to let users:
 
-This project was completed as part of the Codecademy Full-Stack Engineer skill path; it constitutes a portfolio project on the skill path.
+- Search for songs  
+- Build custom playlists  
+- Save those playlists directly to their Spotify account  
 
-This web application interacts with the Spotify API. It allows a user to sign in to their account, search for songs, browse through search results, add search results to a new Spotify playlist, and add that new playlist to their account.
+This was one of my favorite projects during my early full-stack curriculum with Codecademy — the first time I built something that felt like a _real app_. Seeing a playlist I created with my app appear instantly in the Spotify mobile app was a pure dopamine hit.
 
-The purpose of this project was to acquire more comprehensive practice with React, JSON requests, and API communication. In completing this project, I got to practice the following skills:
-- Working with various React tools (e.g. JSX formatting, components, state hooks)
-- ...
+## 🌱 Purpose
 
-## Original Codecademy Prompt
+Built to practice API integration, OAuth authentication, and React component design. This project solidified my understanding of JSON requests, controlled components, and how to structure a more complex app interface with stateful flows.
 
-"In this project, you will build a React web application called Jammming. You will use your knowledge of React components, passing state, and requests with the Spotify API to build a website that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account."
+## 🛠️ Tech Stack
 
-### Project Requirements
+- React  
+- Spotify Web API  
+- OAuth 2.0  
+- JSX  
+- Custom CSS styling  
 
-- Build a web app using React
-- Version control your application with Git and host the repository on GitHub
-- Integrate with Spotify or another API
-- Deploy your application
-- Write a README (using Markdown) that documents your project, including:
-  - The purpose of your project
-  - Technologies used
-  - Features
-  - Future work
+## ✨ Features
 
-### Project Features
+- Login via Spotify OAuth  
+- Real-time search for tracks using Spotify’s search endpoint  
+- Add and remove tracks to a custom playlist  
+- Save playlist to your own Spotify account  
 
-- Users can search for songs by song title.
-  - You can also include functionality to search by other attributes like artist’s name, genre, etc.
-- Users can see information about each song like title, artist, and album for songs they queried
-  - You can also include other information – the design is up to you
-- Users can export their custom playlist to their personal Spotify account
+## 🧠 Lessons & Growth
 
-### Project Prerequisites
+This project gave me my first real taste of:
 
-- HTML
-- CSS
-- JavaScript
-- React
-- HTTP Requests and Responses
-- Authentication
-
-## Technologies Used
-
-...
-
-## Features
-
-...
-
-## Future Work
-
-...
-
-## Lessons Learned / Skills Practiced
-
-*File Management*
-This project has the most complicated filesystem that I had yet to work with. Therefore, throughout this practice I got a lot of practice with...
-
-*Git Version Control*
-...
-
-*React*
-...
-
-*JSON*
-...
-
-*API*
-...
-
-*Styling*
-
-## License
-
-MIT License
-
-Copyright (c) [2024] [Hugo Stetz]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+- Managing app state across components in a multi-step user flow  
+- Debugging authorization errors and token handling  
+- Using real-world APIs with authentication and data persistence  
+- Handling asynchronous user interactions in a clean and intuitive UI
